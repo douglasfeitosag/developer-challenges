@@ -2,6 +2,8 @@ class ShortenerUrl < ApplicationRecord
   validates :original_url, presence: true
   validates :short_url, uniqueness: true
 
+  has_many :url_accesses, dependent: :destroy
+
   before_create :generate_short_url
 
   def expired?

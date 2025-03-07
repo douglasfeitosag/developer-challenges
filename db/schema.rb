@@ -10,16 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_135221) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_07_142628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "shortener_urls", force: :cascade do |t|
     t.string "original_url"
     t.string "short_url"
-    t.integer "url_accesses_count"
+    t.integer "url_accesses_count", default: 0
     t.datetime "expired_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "url_accesses", force: :cascade do |t|
+    t.bigint "shortener_url_id", null: false
+    t.datetime "accessed_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shortener_url_id"], name: "index_url_accesses_on_shortener_url_id"
+  end
+
+  add_foreign_key "url_accesses", "shortener_urls"
 end

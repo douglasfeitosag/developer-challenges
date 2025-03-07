@@ -6,6 +6,10 @@ RSpec.describe ShortenerUrl, type: :model do
     it { should validate_uniqueness_of(:short_url) }
   end
 
+  describe 'associations' do
+    it { should have_many(:url_accesses).dependent(:destroy) }
+  end
+
   describe 'callbacks' do
     it 'generates a unique short_url before creation' do
       url1 = create(:shortener_url)
@@ -47,6 +51,27 @@ RSpec.describe ShortenerUrl, type: :model do
 
     it 'denies access if expired_at is in the past' do
       expect(expired_url.expired?).to be_truthy
+    end
+  end
+
+  describe 'url accesses count' do
+    let(:shortener_url) { create(:shortener_url) }
+
+    it 'changes url_accesses_count when create log' do
+      expect(shortener_url.url_accesses_count).to eq(0)
+
+      create(:url_access, shortener_url: shortener_url)
+
+      expect(shortener_url.url_accesses_count).to eq(1)
+    end
+
+    it 'destroys associated url_accesses when deleted' do
+      create(:url_access, shortener_url: shortener_url)
+      create(:url_access, shortener_url: shortener_url)
+
+      expect {
+        shortener_url.destroy
+      }.to change(UrlAccess, :count).to eq(0)
     end
   end
 end
