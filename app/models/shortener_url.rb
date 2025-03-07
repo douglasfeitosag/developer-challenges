@@ -4,6 +4,10 @@ class ShortenerUrl < ApplicationRecord
 
   before_create :generate_short_url
 
+  def expired?
+    expired_at.present? && expired_at < Time.current
+  end
+
   private
 
   def generate_short_url
