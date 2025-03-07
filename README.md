@@ -1,52 +1,24 @@
-# Desafios para desenvolvedores SPC Grafeno
+# README
 
-Desafios para desenvolvedores da SPC Grafeno.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Esta é uma etapa importante do processo de formação de equipe e esperamos que você aproveite este momento para podermos conhecer melhor suas habilidades técnicas. Para isso, seguem algumas recomendações:
-- Não copie da internet.
-- Não copie de outro candidato.
-- Dedique tempo suficiente durante a solução do desafio e foque no que é importante para funcionar, pense como um produto que precisa ser entregue para o cliente final.
-- Leia com atenção o desafio proposto antes de iniciar a solução.
+Things you may want to cover:
 
-## Desafio proposto: Encurtador de URL
+* Ruby version
 
-Implementar um serviço que permita encurtar URLs a fim de torná-las mais legíveis e fáceis de compartilhar com outras pessoas.
+* System dependencies
 
-O serviço deve ser capaz de encurtar uma URL longa, desfazer o encurtamento quando a URL curta for acessada e redirecionar para a URL original cadastrada pelo usuário.
+* Configuration
 
-Envie também quaisquer documentações da solução, endpoints, arquitetura, que você tenha utilizado durante o desenvolvimento, pois será um plus.
+* Database creation
 
-### Requisitos de negócio
-- No cadastro, receber uma URL longa como parâmetro obrigatório.
-- O encurtamento deve ser composto por no mínimo 5 e no máximo 10 caracteres.
-- Apenas letras e números devem ser utilizados na composição da URL curta.
-- Contar e armazenar a quantidade de acessos da URL curta.
-- Ter histórico de acesso da URL curta com a data de acesso.
-- A URL encurtada poderá ter data de expiração, neste caso, considere receber e validar esse parâmetro opcional.
-- Ao acessar uma URL curta com data de expiração passada, devolver resposta como registro não encontrado.
-- Não é necessário frontend, apenas API.
+* Database initialization
 
-### Requisitos técnicos
-- Deve ser uma API em json.
-- Considere a melhor escolha dos verbos HTTP para cada cenário.
-- Não é necessário se preocupar com autenticação, mas se quiser implementar, nos mostre como você faria.
-- Utilize o banco de dados e outras tecnologias de sua escolha para compor a solução proposta.
-- É necessário que a sua solução execute em Docker.
+* How to run the test suite
 
-## Entrega e avaliação do desafio
+* Services (job queues, cache servers, search engines, etc.)
 
-Faça um fork deste repositório, crie uma branch com a solução proposta e submeta o PR para o upstream, assim poderemos revisar a solução juntos.
+* Deployment instructions
 
-Boas práticas de desenvolvimento são importantes e serão analisadas, como: testes, DRY, 12-factor App, etc. Também vamos analisar a organização do código de forma geral.
-
-É esperado que sua solução tenha um README com instruções de setup e consigamos executá-la em poucos passos sem complicações.
-
-É preferível que você utilize Ruby on Rails, pois faz parte da nossa principal stack de desenvolvimento, mas você também pode resolver com outras linguagens e frameworks das quais se sente mais confortável.
-
-Queremos que você mostre a melhor solução que você pode criar.
-
-Você tem o prazo de 3 dias corridos a partir do recebimento do desafio, e a entrega é considerada com a abertura do PR.
-
-## Dúvidas
-
-Em caso de dúvidas, entre em contato com: guilherme.pereira@spcgrafeno.com.br ou marcos.cordeiro@spcgrafeno.com.br
+* ...
