@@ -5,7 +5,7 @@ module API
 
       head :not_found and return if @shortener_url.expired?
 
-      head :internal_server_error and return unless UrlAccess.create(shortener_url: @shortener_url)
+      head :unprocessable_entity and return unless UrlAccess.create(shortener_url: @shortener_url)
 
       redirect_to @shortener_url.original_url, allow_other_host: true
     end

@@ -38,7 +38,7 @@ RSpec.describe 'UrlAccessesController', type: :request do
       it 'returns internal_server_error' do
         get "/#{shortener_url.short_url}"
 
-        expect(response).to have_http_status(:internal_server_error)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
