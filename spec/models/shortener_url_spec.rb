@@ -4,6 +4,15 @@ RSpec.describe ShortenerUrl, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:original_url) }
     it { should validate_uniqueness_of(:short_url) }
+    it { should allow_value(nil).for(:expired_at) }
+    it 'validates that expired_at is greater than the current time' do
+      invalid_url = build(:shortener_url, expired_at: 1.day.ago)
+      valid_url = build(:shortener_url, expired_at: 1.day.from_now)
+
+      expect(invalid_url.valid?).to be_falsey
+      expect(invalid_url.errors[:expired_at]).not_to be_nil
+      expect(valid_url.valid?).to be_truthy
+    end
   end
 
   describe 'associations' do
@@ -45,7 +54,11 @@ RSpec.describe ShortenerUrl, type: :model do
 
   describe 'expiration logic' do
     let(:valid_url) { create(:shortener_url, expired_at: 1.day.from_now) }
-    let(:expired_url) { create(:shortener_url, expired_at: 1.day.ago) }
+    let(:expired_url) do
+      shortener_url = build(:shortener_url, expired_at: 1.day.ago)
+      shortener_url.save(validate: false)
+      shortener_url
+    end
 
     it 'allows access if expired_at is nil' do
       url = create(:shortener_url, expired_at: nil)

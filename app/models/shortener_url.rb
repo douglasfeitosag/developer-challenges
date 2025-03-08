@@ -1,6 +1,7 @@
 class ShortenerUrl < ApplicationRecord
   validates :original_url, presence: true
   validates :short_url, uniqueness: true
+  validates :expired_at, allow_nil: true, comparison: { greater_than: -> { Time.current } }
 
   has_many :url_accesses, dependent: :destroy
 
