@@ -4,6 +4,9 @@ class ShortenerUrl < ApplicationRecord
 
   has_many :url_accesses, dependent: :destroy
 
+  before_create do
+    self.url_accesses_count = 0
+  end
   before_create :generate_short_url
 
   def expired?

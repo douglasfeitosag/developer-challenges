@@ -5,7 +5,15 @@ RSpec.describe UrlAccess, type: :model do
     it { should belong_to(:shortener_url).counter_cache(true) }
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:accessed_at) }
+  describe 'callbacks' do
+    context 'before_create' do
+      it 'creates with accessed_at' do
+        url_access = build(:url_access)
+
+        expect(url_access.accessed_at).to be_nil
+        expect(url_access.save).to be_truthy
+        expect(url_access.accessed_at).not_to be_nil
+      end
+    end
   end
 end

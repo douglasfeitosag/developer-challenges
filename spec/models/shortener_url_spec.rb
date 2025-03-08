@@ -24,6 +24,13 @@ RSpec.describe ShortenerUrl, type: :model do
       url = create(:shortener_url)
       expect(url.short_url.length).to be_between(5, 10)
     end
+
+    it 'ensures url_accesses_count to zero' do
+      url = build(:shortener_url)
+      expect(url.url_accesses_count).to be_nil
+      expect(url.save).to be_truthy
+      expect(url.url_accesses_count).to be(0)
+    end
   end
 
   describe 'uniqueness' do

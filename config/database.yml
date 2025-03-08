@@ -81,9 +81,10 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: grafeno_production
-    username: grafeno
-    password: <%= ENV["GRAFENO_DATABASE_PASSWORD"] %>
+    host: postgres
+    database: <%= ENV["POSTGRES_DB"] %>
+    username: <%= ENV["POSTGRES_USER"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: grafeno_production_cache

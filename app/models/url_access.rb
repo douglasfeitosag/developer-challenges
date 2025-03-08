@@ -1,5 +1,7 @@
 class UrlAccess < ApplicationRecord
   belongs_to :shortener_url, counter_cache: true
 
-  validates :accessed_at, presence: true
+  before_create do
+    self.accessed_at = Time.now
+  end
 end

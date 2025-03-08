@@ -1,24 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Encurtador de URLs
 
-Things you may want to cover:
+Este é um sistema simples de encurtamento de URLs desenvolvido com Ruby on Rails, utilizando Docker e Docker Compose para facilitar a configuração e execução. O sistema fornece uma API para criar URLs encurtadas e acessar URLs encurtadas, registrando acessos.
 
-* Ruby version
+# Tecnologias Utilizadas
+• Ruby on Rails - Framework para desenvolvimento da API
 
-* System dependencies
+• PostgreSQL - Banco de dados para armazenar URLs
 
-* Configuration
+•	Docker & Docker Compose - Containerização da aplicação
 
-* Database creation
+•	RSpec - Testes automatizados
 
-* Database initialization
+# Clonar o repositório
 
-* How to run the test suite
+# Criar o arquivo .env
 
-* Services (job queues, cache servers, search engines, etc.)
+Copie o arquivo .env.sample e renomeie para .env:
 
-* Deployment instructions
+`cp .env.sample .env`
 
-* ...
+# Subir os containers com Docker Compose
+
+`docker-compose up -d --build`
+
+# Criar o banco de dados
+
+`docker-compose exec app bin/rails db:create db:migrate`
+
+# Rodar os testes
+
+`docker-compose exec app bundle exec rspec`
+
+# Endpoints da API
+
+A API pode ser testada via Postman, cURL ou qualquer cliente HTTP. Os endpoints disponíveis incluem:
+
+### Criar uma URL encurtada e visitar uma url encurtada
+
+Os arquivos curl estão na pasta postman
