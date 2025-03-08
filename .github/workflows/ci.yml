@@ -83,4 +83,8 @@ jobs:
         run: bundle exec rubocop
 
       - name: Run RSpec
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: postgres
         run: bundle exec rspec
