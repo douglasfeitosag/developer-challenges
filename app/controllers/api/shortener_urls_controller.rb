@@ -1,18 +1,18 @@
 module API
   class ShortenerUrlsController < ActionController::API
     def show
-      @shortener_url = ShortenerUrl.find(params[:id]) rescue (head :not_found and return)
+      shortener_url = ShortenerUrl.find(params[:id]) rescue (head :not_found and return)
 
-      render json: @shortener_url.serializable_hash(include: { url_accesses: { only: :accessed_at } })
+      render json: shortener_url.serializable_hash(include: { url_accesses: { only: :accessed_at } })
     end
 
     def create
-      @shortener_url = ShortenerUrl.new(shortener_url_params)
+      shortener_url = ShortenerUrl.new(shortener_url_params)
 
-      if @shortener_url.save
-        render json: @shortener_url.serializable_hash, status: 201
+      if shortener_url.save
+        render json: shortener_url.serializable_hash, status: 201
       else
-        head :unprocessable_entity
+        render json: shortener_url.errors, status: 422
       end
     end
 
