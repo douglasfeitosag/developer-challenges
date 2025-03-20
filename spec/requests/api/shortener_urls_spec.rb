@@ -20,6 +20,22 @@ RSpec.describe 'ShortenerUrlsController', type: :request do
         expect(json['expired_at']).to be_nil
       end
     end
+
+    context 'with invalid parameters' do
+      it "don't creates a shortened URL" do
+        valid_params = { shortener_url: { original_url: '' } }
+
+        expect {
+          post '/api/shortener_urls', params: valid_params, as: :json
+        }.to change(ShortenerUrl, :count).by(0)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+
+        json = JSON.parse(response.body)
+        expect(json.keys).to contain_exactly('original_url')
+        expect(json['original_url']).to eq( ["can't be blank"])
+      end
+    end
   end
 
   describe 'GET /api/shortener_urls/:id' do
